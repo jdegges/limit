@@ -1,0 +1,53 @@
+# limit #
+
+Front end to getrlimit and setrlimit. This allows you to get and set various
+resource limits on a per-program basis. You might notice that
+/etc/security/limits.conf does similar things for users and groups.
+
+
+# Dependencies
+
+The only dependency is libxml-2.0 which is used for parsing the configuration
+file. You can download it for free at http://xmlsoft.org/.
+
+
+# Supported resources
+
+Currently the following resources are supported:
+* AS
+* CORE
+* CPU
+* DATA
+* FSIZE
+* LOCKS
+* MEMLOCK
+* MSGQUEUE
+* NICE
+* NOFILE
+* NPROC
+* RSS
+* RTPRIO
+* SIGPENDING
+* STACK
+
+See your systems man pages for more detailed descriptions:
+http://www.opengroup.org/onlinepubs/009695399/functions/getrlimit.html
+
+
+# Configuration file format
+
+  <?xml version="1.0"?>
+  <limits>
+    <resource>
+      <name>AS</name>
+      <soft>1073741824</soft>
+      <hard>1610612736</hard>
+    </resource>
+    ...
+  </limits>
+
+Any number of resource limitation clauses can be added to the limits clause.
+All memory based units are measured in bytes and all time based units are
+measured in seconds.
+
+See examples/sample.conf for a complete example.
